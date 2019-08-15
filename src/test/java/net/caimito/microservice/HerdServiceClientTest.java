@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @RestClientTest(HerdServiceClient.class)
-public class ConsumerTest {
+public class HerdServiceClientTest {
 	
 	@Autowired
 	private HerdServiceClient client ;
@@ -32,6 +32,8 @@ public class ConsumerTest {
 	@Before
 	public void setUp() throws Exception {
 		String detailsString = objectMapper.writeValueAsString(new Herd("Casita", 30)) ;
+		
+		System.out.println(detailsString) ;
 		
 		this.server.expect(requestTo("/herd/Casita")).andRespond(withSuccess(detailsString, MediaType.APPLICATION_JSON)) ;
 	}

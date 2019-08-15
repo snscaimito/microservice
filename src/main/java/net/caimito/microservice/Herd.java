@@ -1,5 +1,9 @@
 package net.caimito.microservice;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Herd {
 
 	private String name ;
@@ -15,16 +19,23 @@ public class Herd {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getAnimalCount() {
 		return animalCount;
 	}
 
-	public void setAnimalCount(int animalCount) {
-		this.animalCount = animalCount;
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false) ;
 	}
 	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this, false) ;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this) ;
+	}
+
 }
